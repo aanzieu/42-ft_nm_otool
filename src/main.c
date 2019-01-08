@@ -6,17 +6,11 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 13:16:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/01/08 13:51:37 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/01/08 14:38:16 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <mach-o/loader.h>
-#include <mach-o/nlist.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/mman.h>
-#include <sys/stat.h>
+#include "../include/ft_nm.h"
 
 void print_output(int nsyms, unsigned int symoff, unsigned int stroff, char *ptr)
 {
