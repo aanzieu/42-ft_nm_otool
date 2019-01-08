@@ -6,10 +6,12 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:32:18 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/01/08 14:38:08 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/01/08 16:15:00 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FT_NM_H
+# define FT_NM_H
 //  open, openat -- open or create a file for reading or writing - open(2)
 #include <fcntl.h>
 
@@ -17,6 +19,10 @@
 // pwrite, write, writev -- write output - write(2)
 #include <unistd.h>
 
+// Fat 
+#include <mach-o/fat.h>
+
+// Generic
 #include <mach-o/loader.h>
 #include <mach-o/nlist.h>
 
@@ -32,3 +38,22 @@
 
 //  fstat, fstat64, lstat, lstat64, stat, stat64, fstatat -- get file status - fstat(2)
 #include <sys/stat.h>
+
+/*
+** vertix
+*/
+
+void    nm(char *ptr);
+
+/*
+** handle
+*/
+
+void handle_64(char *ptr);
+
+
+
+
+void print_output(int nsyms, unsigned int symoff, unsigned int stroff, char *ptr);
+
+#endif
