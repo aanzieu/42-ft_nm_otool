@@ -6,7 +6,7 @@
 #    By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 11:15:53 by aanzieu           #+#    #+#              #
-#    Updated: 2019/01/08 16:09:06 by aanzieu          ###   ########.fr        #
+#    Updated: 2019/01/08 16:24:21 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,16 @@ SRC_DIR = src
 SRC =	$(SRC_DIR)/main.c \
 		\
 		$(SRC_DIR)/handles/nm.c \
+		$(SRC_DIR)/handles/handles.c \
+		\
+		$(SRC_DIR)/utils/print.c
+
 
 ###########################################
 ##--- Use Patsubst to find .o from .c ---##
 ###########################################
 
-OBJ = $(patsubst srcs/%.c, obj/%.o, $(SRC))
+OBJ 	= $(patsubst srcs/%.c, obj/%.o, $(SRC))
 .SILENT:
 
 ###############################
