@@ -6,11 +6,11 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:14:42 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/01/08 16:15:13 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/01/08 16:29:30 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
+#include "../../include/ft_nm.h"
 
 void print_output(int nsyms, unsigned int symoff, unsigned int stroff, char *ptr)
 {

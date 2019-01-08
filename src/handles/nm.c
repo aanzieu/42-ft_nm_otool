@@ -6,13 +6,13 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:07:21 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/01/08 16:13:34 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/01/08 16:25:43 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Check every number magic
 
-#include "ft_nm.h"
+#include "../../include/ft_nm.h"
 
 void    nm(char *ptr)
 {

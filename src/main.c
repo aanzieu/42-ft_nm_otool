@@ -6,17 +6,11 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 13:16:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/01/08 16:14:14 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/01/08 16:29:29 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h"
-
-
-
-
-
-
+#include "../include/ft_nm.h"
 
 
 int main(int ac, char **av)
@@ -50,8 +44,6 @@ int main(int ac, char **av)
         perror("mmap");
         return (EXIT_FAILURE);
     }
-
-
     nm(ptr);
     if (munmap(ptr, buf.st_size) < 0)
     {
