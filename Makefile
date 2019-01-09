@@ -6,7 +6,7 @@
 #    By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 11:15:53 by aanzieu           #+#    #+#              #
-#    Updated: 2019/01/08 16:29:06 by aanzieu          ###   ########.fr        #
+#    Updated: 2019/01/09 08:53:35 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,10 @@ RF = rm -rf
 ###########################
 SRC_DIR = src
 
-SRC =	$(SRC_DIR)/main.c \
+SRC =	$(SRC_DIR)/ft_nm/main.c \
 		\
-		$(SRC_DIR)/handles/nm.c \
-		$(SRC_DIR)/handles/handle_64.c \
+		$(SRC_DIR)/ft_nm/handles/nm.c \
+		$(SRC_DIR)/ft_nm/handles/handle_64.c \
 		\
 		$(SRC_DIR)/utils/print.c \
 
@@ -57,7 +57,6 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	printf '\033[K\033[32m[✔] %s\n\033[0m' "--Compiling Sources--------"
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
-	printf '\033[32m[✔] %s\n\033[0m' "--Compiling Libft Library--------"
 	if [ ! -d bin ]; then mkdir -p bin; fi
 	$(CC) $(CC_FLAGS) -o bin/$(NAME) $(OBJ) $(LIBFT)
 	printf '\033[1;7m'
@@ -67,7 +66,7 @@ $(NAME): $(OBJ)
 ##--- Create repertories for objects .c to .c ---##
 ###################################################
 
-obj/%.o: srcs/%.c
+obj/%.o: src/%.c
 	if [ ! -d obj ]; then mkdir -p obj; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
 	$(CC) $(CC_FLAGS) -c $(INCLUDE) $< -o $@
@@ -96,3 +95,5 @@ fclean: clean
 	@$(RF) obj bin
 
 re: fclean all
+
+.PHONY: all clean fclean re

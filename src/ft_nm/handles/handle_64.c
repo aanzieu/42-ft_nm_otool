@@ -6,13 +6,13 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:12:03 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/01/08 16:25:48 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/01/09 10:26:05 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/ft_nm.h"
+#include "../../../include/ft_nm.h"
 
-void handle_64(char *ptr)
+void handle_64(void *ptr)
 {
     int ncmds;
     int i;
