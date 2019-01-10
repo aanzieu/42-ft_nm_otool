@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 13:16:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/01/09 10:26:58 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/01/10 09:07:59 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int get_file_statut(int fd, struct stat *buf)
 {
-
     if (fstat(fd, buf) < 0)
     {
         perror("fstat");
@@ -42,7 +41,7 @@ int open_file(char *arg)
 
 int map_file_memory(int fd, size_t size, void **ptr)
 {
-    if ((ptr = mmap(0, size, PROT_READ, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
+    if ((*ptr = mmap(0, size, PROT_READ, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
     {
         perror("mmap");
         return (1);
