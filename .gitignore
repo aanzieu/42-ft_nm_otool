@@ -3,5 +3,5 @@ a.out
 test/*
 libft/*
 .DS_Store
-bin/ft_nm
+bin/*
 obj/*
