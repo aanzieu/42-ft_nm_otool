@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 08:58:27 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/01/10 09:15:03 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/01/14 08:39:12 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@
 //  fstat, fstat64, lstat, lstat64, stat, stat64, fstatat -- get file status - fstat(2)
 #include <sys/stat.h>
 
+#include "../libft/libft.h"
+
 typedef	enum		e_bool
 {
-	good = 1,
-	ngood = 0,
+	False = 1,
+	True = 0,
 }					t_bool;
 
 #endif

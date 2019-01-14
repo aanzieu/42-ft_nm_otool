@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:07:21 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/01/10 09:33:52 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/01/14 09:20:12 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,20 @@
 // 	return (0);
 // }
 
-void nm(void *ptr)
+uint32_t get_magic_number(t_obj *obj){
+
+    return 32;
+}
+
+void find_header_type(t_obj *obj)
 {
-    unsigned int magic_number;
-    dprintf(1, "toto\n");
-    // (void)ptr;
-    magic_number = *(unsigned int  *)ptr;
+    uint32_t magic_number;
+
+    magic_number = get_magic_number(obj);
     if (magic_number == MH_MAGIC_64)
     {
         puts("binaire 64");
-        handle_64(ptr);
+        // handle_64(ptr);
     }
     else if (magic_number == MH_MAGIC)
     {
@@ -91,6 +95,14 @@ void nm(void *ptr)
     {
         puts("not valid binaire");
     }
+}
+
+void nm(t_obj *obj)
+{
+    // (void)ptr;
+    find_header_type(obj);
+
+    // magic_number = *(unsigned int  *)ptr;
 }
 
 // #define FAT_MAGIC	0xcafebabe

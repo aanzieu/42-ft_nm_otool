@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 13:16:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/01/10 09:07:59 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/01/14 09:12:44 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,30 @@ int map_file_memory(int fd, size_t size, void **ptr)
     }
     return (0);
 }
-int open_and_map(char *prog, char *arg)
+int open_and_map(char *arg, t_obj *obj)
 {
-    int fd;
-    void *ptr;
-    struct stat buf;
+    int         fd;
+    void        *data;
+    struct  stat buf;
 
-    (void)prog;
-    ptr = NULL;
+    data = NULL;
     if ((fd = open_file(arg)) < 0)
         return (EXIT_FAILURE);
     if (get_file_statut(fd, &buf))
     {
         return (EXIT_FAILURE);
     }
-    if (map_file_memory(fd, buf.st_size, &ptr))
+    if (map_file_memory(fd, buf.st_size, &data))
     {
         return (EXIT_FAILURE);
     }
-    nm(ptr);
-    if (munmap(ptr, buf.st_size) < 0)
+    if (obj) {
+        obj->path = ft_strdup(arg);
+        obj->data = data;
+        obj->size_data = buf.st_size;
+    }
+    nm(&obj);
+    if (munmap((void*)obj->data, obj->size_data) < 0)
     {
         perror("mummap");
         return (EXIT_FAILURE);
@@ -75,9 +79,12 @@ int open_and_map(char *prog, char *arg)
     return 0;
 }
 
+
 static int open_arg(char **arg, int i)
 {
-    if ((open_and_map(NM, arg[i])) != 0)
+    t_obj   obj;
+
+    if ((open_and_map(arg[i], &obj)) != 0)
     {
         return (EXIT_FAILURE);
     }
@@ -90,11 +97,8 @@ static int open_arg(char **arg, int i)
 
 int main(int ac, char **av)
 {
-
-    // stat ftsize
-
     // off_t		st_size;	/* [XSI] file size, in bytes */
-    //
+
     if (ac != 2)
     {
         fprintf(stderr, "Plese give me arg");
