@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 13:16:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/01/14 09:12:44 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/01/14 14:15:51 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int open_and_map(char *arg, t_obj *obj)
         obj->data = data;
         obj->size_data = buf.st_size;
     }
-    nm(&obj);
+    nm(obj);
     if (munmap((void*)obj->data, obj->size_data) < 0)
     {
         perror("mummap");
@@ -93,7 +93,11 @@ static int open_arg(char **arg, int i)
 
 // ERROR MESSAGE
 // truncated or malformed object (size field of section 0 in LC_SEGMENT_64 command 1 greater than the segment)
+
+
 // truncated or malformed fat file (offset plus size of cputype (7) cpusubtype (3) extends past the end of the file)
+
+
 
 int main(int ac, char **av)
 {
