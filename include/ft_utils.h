@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 08:58:27 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/01/14 08:39:12 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/01/29 11:17:43 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,20 @@
 
 #include "../libft/libft.h"
 
-typedef	enum		e_bool
+typedef struct                          s_obj
 {
-	False = 1,
-	True = 0,
-}					t_bool;
+    const char      *path;
+    const void      *data;
+    size_t          size_data;
+    uint32_t        magic;
+    cpu_type_t      cputype;         /* cpu specifier */
+    cpu_subtype_t   cpusubtype;      /* machine specifier */
+    uint32_t        filetype;        /* type of file */
+    uint32_t        ncmds;           /* number of load commands */
+    uint32_t        sizeofcmds;      /* the size of all the load commands */
+    struct          load_command *lc;
+    t_list          *list;
+}                                       t_obj;
+
 
 #endif

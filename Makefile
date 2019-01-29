@@ -6,7 +6,7 @@
 #    By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 11:15:53 by aanzieu           #+#    #+#              #
-#    Updated: 2019/01/09 08:53:35 by aanzieu          ###   ########.fr        #
+#    Updated: 2019/01/29 09:31:18 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,9 +37,13 @@ SRC =	$(SRC_DIR)/ft_nm/main.c \
 		\
 		$(SRC_DIR)/ft_nm/handles/nm.c \
 		$(SRC_DIR)/ft_nm/handles/handle_64.c \
+		$(SRC_DIR)/ft_nm/handles/handle_32.c \
 		\
 		$(SRC_DIR)/utils/print.c \
-
+		$(SRC_DIR)/utils/swap_magic.c \
+		$(SRC_DIR)/utils/get_arch_type.c \
+		$(SRC_DIR)/utils/swap_bits.c \
+		$(SRC_DIR)/utils/checkoff.c \
 
 ###########################################
 ##--- Use Patsubst to find .o from .c ---##

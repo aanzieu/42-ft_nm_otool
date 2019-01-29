@@ -6,11 +6,13 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 13:16:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/01/14 14:15:51 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/01/28 17:01:06 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/ft_nm.h"
+
+
 
 int get_file_statut(int fd, struct stat *buf)
 {
