@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 08:58:27 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/01/29 11:17:43 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/01/29 14:56:46 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,18 @@ typedef struct                          s_obj
     uint32_t        ncmds;           /* number of load commands */
     uint32_t        sizeofcmds;      /* the size of all the load commands */
     struct          load_command *lc;
-    t_list          *list;
+    
+    
+    int             tss;    /*text section syumbol */
+    int             bss;    /*text section data*/
+    int             dss;    /*text section data*/
+    // t_list          *list;
 }                                       t_obj;
+
+// typedef enum s_bool {
+    // False,
+    // True
+// }   t_bool;
 
 
 #endif
