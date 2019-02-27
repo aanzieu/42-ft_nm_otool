@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/ft_nm.h"
+#include "../../include/ft_utils.h"
 
 //! Byte ft_swap unsigned short
 uint16_t ft_swap_uint16(uint16_t val)
@@ -53,3 +53,12 @@ uint64_t ft_swap_uint64(uint64_t val)
 	val = ((val << 16) & 0xFFFF0000FFFF0000ULL) | ((val >> 16) & 0x0000FFFF0000FFFFULL);
 	return (val << 32) | (val >> 32);
 }
+
+//   union {
+//         uint64_t ll;
+//         uint32_t l[2];
+//     } w, r;
+//     w.ll = x;
+//     r.l[0] = bswap_32 (w.l[1]);
+//     r.l[1] = bswap_32 (w.l[0]);
+//     return r.ll;

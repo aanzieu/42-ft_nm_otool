@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 08:58:27 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/02/11 11:41:47 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/02/27 14:57:39 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@
 #include <sys/stat.h>
 
 #include "../libft/libft.h"
+typedef enum s_return
+{
+    Ok,
+    Err,
+} t_return;
+
 typedef enum s_bool
 {
     True,
@@ -51,9 +57,17 @@ typedef struct s_obj
     uint32_t ncmds;           /* number of load commands */
     uint32_t sizeofcmds;      /* the size of all the load commands */
     struct load_command *lc;
+    struct symtab_command *sym;
+    struct nlist_64 *list64;
+    struct nlist *list;
+    // struct s_seg_list *seg_list;
+    // char sectname[16];
+    // char segname[16];
+
     t_bool swap; /* Define if mg need swap */
 
-    int tss; /*text section syumbol */
+    int     index_sec;
+    int tss; /*text section symbol */
     int bss; /*text section data*/
     int dss; /*text section data*/
     // t_list          *list;
@@ -61,5 +75,23 @@ typedef struct s_obj
 
 uint32_t ft_swap_uint32(uint32_t val);
 int32_t ft_swap_int32(int32_t val);
+int64_t ft_swap_int64(int64_t val);
+uint64_t ft_swap_uint64(uint64_t val);
+int16_t ft_swap_int16(int16_t val);
+uint16_t ft_swap_uint16(uint16_t val);
+
+void swap_nlist(struct nlist array);
+void swap_nlist_64(struct nlist_64 array);
+void swap_mach_header_64(struct mach_header_64 *h);
+void swap_mach_header(struct mach_header *h);
+
+void swap_symtab_command(struct symtab_command *sym);
+void swap_load_commands(struct load_command *lc);
+
+char ntype_if_upper(char c, uint8_t ntype);
+
+char *checkoff_string(t_obj *obj, char *str, uint32_t off);
+int check_sizeoff(t_obj *obj, const void *start, size_t size);
+void *check_sizeoff_move(t_obj *obj, const void *start, size_t size);
 
 #endif

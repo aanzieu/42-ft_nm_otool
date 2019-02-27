@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 13:16:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/02/11 09:43:54 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/02/25 12:54:20 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static int open_and_map(char *arg, t_obj *obj)
         obj->size_data = buf.st_size;
     }
     if(nm(obj)){
+        puts("error");
         return (EXIT_FAILURE);
     }
     if (munmap((void *)obj->data, obj->size_data) < 0)

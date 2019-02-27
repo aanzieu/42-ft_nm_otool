@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:32:18 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/02/11 10:01:50 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/02/26 16:01:14 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,18 @@
 
 #define NM "ft_nm"
 
-typedef struct s_seg_cmd
-{                     /* for 64-bit architectures */
-    uint32_t cmd;     /* LC_SEGMENT_64 */
-    uint32_t cmdsize; /* includes sizeof section_64 structs */
+typedef struct s_seg_list
+{
     char *name;
-    char segname[16];  /* segment name */
-    uint64_t vmaddr;   /* memory address of this segment */
-    uint64_t vmsize;   /* memory size of this segment */
-    uint64_t fileoff;  /* file offset of this segment */
-    uint64_t filesize; /* amount to map from the file */
-    // vm_prot_t maxprot;  /* maximum VM protection */
-    // vm_prot_t initprot; /* initial VM protection */
-    uint32_t nsects; /* number of sections in segment */
-    // uint32_t flags;     /* flags */
-} t_seg_cmd;
+    // segment_command
+    char sectname[16];
+    char segname[16];
+    // n_list
+    uint8_t n_type;
+    uint8_t n_sect;
+    uint64_t n_value;
+
+} t_seg_list;
 
 /**
  * Utils Open function
@@ -55,14 +52,26 @@ void swap_magic(void);
 */
 
 int handle_64(t_obj *obj);
-void handle_32(void *ptr);
+int handle_32(t_obj *obj);
+
+int parse_load_command_64(t_obj *obj);
+int parse_load_command_32(t_obj *obj);
+
+/*
+*  Print
+*
+*/
+char get_char_type_64(struct nlist_64 seg_list, t_obj *obj);
+char get_char_type_32(struct nlist seg_list, t_obj *obj);
+
+int for_each_symtab_32(t_obj *obj, struct symtab_command *sym, struct nlist *array, char *stringtable);
+int for_each_symtab_64(t_obj *obj, struct symtab_command *sym, struct nlist_64 *array, char *stringtable);
 
 /*
 **
 */
 void print_output(int nsyms, unsigned int symoff, unsigned int stroff, char *ptr);
 
-int check_sizeoff(t_obj *obj, const void *start, size_t size);
-void *check_sizeoff_move(t_obj *obj, const void *start, size_t size);
+struct nlist_64 *sort_64(t_obj *obj, struct symtab_command *sym, char *stringtable);
 
 #endif

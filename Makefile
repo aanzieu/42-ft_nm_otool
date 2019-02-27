@@ -6,7 +6,7 @@
 #    By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 11:15:53 by aanzieu           #+#    #+#              #
-#    Updated: 2019/02/11 09:41:14 by aanzieu          ###   ########.fr        #
+#    Updated: 2019/02/26 15:42:22 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,16 @@ SRC_DIR = src
 SRC =	$(SRC_DIR)/ft_nm/main.c \
 		\
 		$(SRC_DIR)/ft_nm/handles/nm.c \
-		$(SRC_DIR)/ft_nm/handles/handle_64.c \
 		$(SRC_DIR)/ft_nm/handles/handle_32.c \
+		$(SRC_DIR)/ft_nm/handles/typechar_32.c \
+		$(SRC_DIR)/ft_nm/handles/printsym_32.c \
+		$(SRC_DIR)/ft_nm/handles/loadcmd_32.c \
+		\
+		$(SRC_DIR)/ft_nm/handles/handle_64.c \
+		$(SRC_DIR)/ft_nm/handles/typechar_64.c \
+		$(SRC_DIR)/ft_nm/handles/listsort_64.c \
+		$(SRC_DIR)/ft_nm/handles/printsym_64.c \
+		$(SRC_DIR)/ft_nm/handles/loadcmd_64.c \
 		\
 		$(SRC_DIR)/utils/print.c \
 		$(SRC_DIR)/utils/swap_magic.c \
@@ -45,6 +53,7 @@ SRC =	$(SRC_DIR)/ft_nm/main.c \
 		$(SRC_DIR)/utils/swap_bits.c \
 		$(SRC_DIR)/utils/checkoff.c \
 		$(SRC_DIR)/utils/utils_open.c \
+		$(SRC_DIR)/utils/utils_print.c \
 
 ###########################################
 ##--- Use Patsubst to find .o from .c ---##
