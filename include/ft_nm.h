@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:32:18 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/02/26 16:01:14 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/03 14:52:48 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,20 @@ int parse_load_command_32(t_obj *obj);
 *  Print
 *
 */
-char get_char_type_64(struct nlist_64 seg_list, t_obj *obj);
-char get_char_type_32(struct nlist seg_list, t_obj *obj);
+char get_char_type_64(t_seg_list seg_list, t_obj *obj);
+char get_char_type_32(t_seg_list seg_list, t_obj *obj);
 
-int for_each_symtab_32(t_obj *obj, struct symtab_command *sym, struct nlist *array, char *stringtable);
-int for_each_symtab_64(t_obj *obj, struct symtab_command *sym, struct nlist_64 *array, char *stringtable);
+int for_each_symtab_32(t_obj *obj, struct symtab_command *sym, t_list *array, char *stringtable);
+int for_each_symtab_64(t_obj *obj, struct symtab_command *sym, t_list *array, char *stringtable);
 
 /*
 **
 */
 void print_output(int nsyms, unsigned int symoff, unsigned int stroff, char *ptr);
 
-struct nlist_64 *sort_64(t_obj *obj, struct symtab_command *sym, char *stringtable);
+t_list *sort_64(t_obj *obj, struct symtab_command *sym, char *stringtable);
+t_list *sort_32(t_obj *obj, struct symtab_command *sym, char *stringtable);
+void	sort_ascii(t_obj *obj, t_list **lst);
+void	sort_num(t_obj *obj, t_list **lst);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:56:39 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/02/26 08:25:17 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/03 12:08:38 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /**
  * Print search Char type
  * */
-static char find_sect_type_32(struct nlist list, t_obj *obj)
+static char find_sect_type_32(t_seg_list list, t_obj *obj)
 {
     if (list.n_sect == obj->tss)
         return (ntype_if_upper('t', list.n_type));
@@ -28,7 +28,7 @@ static char find_sect_type_32(struct nlist list, t_obj *obj)
     return (ntype_if_upper('s', list.n_type));
 }
 
-char get_char_type_32(struct nlist seg_list, t_obj *obj)
+char get_char_type_32(t_seg_list seg_list, t_obj *obj)
 {
     int type;
 

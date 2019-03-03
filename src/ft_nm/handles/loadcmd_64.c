@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:49:26 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/02/27 12:07:21 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/03 13:58:26 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static void get_index_segname_64(t_obj *obj, struct segment_command_64 *seg, str
 static int read_symbat_command_64(t_obj *obj, struct symtab_command *sym)
 {
     char *stringtable;
-    struct nlist_64 *array;
+
+	t_list		*new;
 
     if (!(stringtable = check_sizeoff_move(obj, obj->data, sym->stroff)))
     {
@@ -39,13 +40,13 @@ static int read_symbat_command_64(t_obj *obj, struct symtab_command *sym)
         return Err;
     }
     
-    if (!(array = sort_64(obj, sym, stringtable)))
+    if (!(new = sort_64(obj, sym, stringtable)))
     {
         puts("ARRAY ERRor Sizeoff");
         return Err;
     }
-
-    return (for_each_symtab_64(obj, sym, array, stringtable));
+    // ft_lstpush(&obj->lst, new);
+    return (for_each_symtab_64(obj, sym, new, stringtable));
 }
 
 /**
@@ -78,11 +79,11 @@ static int read_segment_command_64(t_obj *obj, struct segment_command_64 *seg)
                 get_index_segname_64(obj, seg, sect, obj->index_sec);
                 obj->index_sec++;
             }
-            else
-            {
-                puts("error sizeof segname command\n");
-                // return Err;
-            }
+            // else
+            // {
+            //     puts("error sizeof segname command\n");
+            //     // return Err;
+            // }
         }
     }
     return Ok;

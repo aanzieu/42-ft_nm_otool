@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:49:26 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/02/26 14:43:48 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/03 14:54:45 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,22 @@ static void get_index_segname_32(t_obj *obj, struct segment_command *seg, struct
 static int read_symbat_command_32(t_obj *obj, struct symtab_command *sym)
 {
     char *stringtable;
-    struct nlist *array;
 
-    if (!(array = check_sizeoff_move(obj, obj->data, sym->symoff)))
-    {
-        puts("ARRAY ERRor Sizeoff");
-        return Err;
-    }
+	t_list		*new;
+
     if (!(stringtable = check_sizeoff_move(obj, obj->data, sym->stroff)))
     {
         puts("Stringable Err");
         return Err;
     }
-
-    return (for_each_symtab_32(obj, sym, array, stringtable));
+    
+    if (!(new = sort_32(obj, sym, stringtable)))
+    {
+        puts("ARRAY ERRor Sizeoff");
+        return Err;
+    }
+    // ft_lstpush(&obj->lst, new);
+    return (for_each_symtab_32(obj, sym, new, stringtable));
 }
 
 
@@ -59,10 +61,10 @@ static int read_segment_command_32(t_obj *obj, struct segment_command *seg)
     obj->dss = 1;
     obj->tss = 1;
     obj->bss = 1;
-    if (!obj->swap)
-    {
-        seg->nsects = ft_swap_uint32(seg->nsects);
-    }
+    // if (!obj->swap)
+    // {
+    //     seg->nsects = ft_swap_uint32(seg->nsects);
+    // }
     i = -1;
     while (++i < (int)seg->nsects)
     {

@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 09:15:01 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/02/26 13:42:36 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/03 13:36:49 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,27 @@ char *checkoff_string(t_obj *obj, char *str, uint32_t off)
         i++;
     }
     return (ret);
+}
+
+t_bool checkoff_endofstring(t_obj *obj, char *str)
+{
+    int ret;
+    size_t i;
+
+    i = 0;
+    ret = False;
+    if (str)
+    {
+        while (check_sizeoff(obj, (void *)str, i + 1))
+        {
+            ret = False;
+            if (str[i] == '\0')
+            {
+                ret = True;
+                break;
+            }
+            i++;
+        }
+    }
+    return ((t_bool)ret);
 }

@@ -41,10 +41,10 @@ printf  "#------------- Corr -------------#\n\n"
 ${bin} ${foo}/corr1
 ${bin} ${foo}/corr2
 
-printf "\n#------------- TEST 7 --------------#\n"
-printf  "#------------- scvfsdb -------------#\n\n"
+# printf "\n#------------- TEST 7 --------------#\n"
+# printf  "#------------- scvfsdb -------------#\n\n"
 
-${bin} ${foo}/cvfsdb_sbin
+# ${bin} ${foo}/cvfsdb_sbin
 
 printf "\n#------------- TEST 8 ---------------#\n"
 printf  "#------------- Ds Store -------------#\n\n"

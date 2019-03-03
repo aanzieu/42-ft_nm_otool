@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 08:54:10 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/02/26 15:42:10 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/03 11:31:50 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,16 @@ void    swap_load_commands(struct load_command *lc)
     lc->cmdsize = ft_swap_uint32(lc->cmdsize);
 }
 
-void	swap_nlist(struct nlist symbol)
+void	swap_nlist(struct nlist *symbol)
 {
-	symbol.n_un.n_strx = ft_swap_int32(symbol.n_un.n_strx);
-	symbol.n_desc = ft_swap_int16(symbol.n_desc);
-	symbol.n_value = ft_swap_int32(symbol.n_value);
+	symbol->n_un.n_strx = ft_swap_int32(symbol->n_un.n_strx);
+	symbol->n_desc = ft_swap_int16(symbol->n_desc);
+	symbol->n_value = ft_swap_int32(symbol->n_value);
 }
 
-void	swap_nlist_64(struct nlist_64 symbol)
+void	swap_nlist_64(struct nlist_64 *symbol)
 {
-	symbol.n_un.n_strx = ft_swap_int32(symbol.n_un.n_strx);
-	symbol.n_desc = ft_swap_int16(symbol.n_desc);
-	symbol.n_value = ft_swap_int64(symbol.n_value);
+	symbol->n_un.n_strx = ft_swap_int32(symbol->n_un.n_strx);
+	symbol->n_desc = ft_swap_int16(symbol->n_desc);
+	symbol->n_value = ft_swap_int64(symbol->n_value);
 }

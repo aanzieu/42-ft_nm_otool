@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:12:03 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/02/26 15:59:32 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/03 13:55:58 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,14 @@ static int     parse_loads_commands_64(t_obj *obj)
 
         if (parse_load_command_64(obj))
         {
+            puts("error Pasrse load");
             return Err;
         }
         if (!(obj->lc = check_sizeoff_move(obj, obj->lc, obj->lc->cmdsize)))
+        {
+            puts("error LC");
             return Err;
+        }
         i++;
     }
     return (Ok);

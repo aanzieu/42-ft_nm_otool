@@ -1,15 +1,21 @@
-// #include "../../include/ft_nm.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_arch_type.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/03 15:23:48 by aanzieu           #+#    #+#             */
+/*   Updated: 2019/03/03 15:32:24 by aanzieu          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../include/ft_utils.h"
 #include <mach/mach.h>
 // code source https://opensource.apple.com/source/cctools/cctools-573.1/libstuff/arch.c for type of CPU infos
 
-struct arch_flag
-{
-    char *name;
-    cpu_type_t cputype;
-    cpu_subtype_t cpusubtype;
-};
-
-static const struct arch_flag arch_flags[] = {
+static const t_arch_flag arch_tab[] = {
+    {"error", CPU_TYPE_ANY, CPU_SUBTYPE_MULTIPLE},
     {"any", CPU_TYPE_ANY, CPU_SUBTYPE_MULTIPLE},
     {"little", CPU_TYPE_ANY, CPU_SUBTYPE_LITTLE_ENDIAN},
     {"big", CPU_TYPE_ANY, CPU_SUBTYPE_BIG_ENDIAN},
@@ -58,22 +64,16 @@ static const struct arch_flag arch_flags[] = {
     // { "veo2",   CPU_TYPE_VEO,     CPU_SUBTYPE_VEO_2 },
     {NULL, 0, 0}};
 
-
-
-int get_arch_from_flag(char *name, struct arch_flag *arch_flag)
+t_arch_flag get_arch_type(cpu_type_t cputype, cpu_subtype_t cpusubtype)
 {
-    unsigned long i;
+    int index;
 
-    for (i = 0; arch_flags[i].name != NULL; i++)
+    index = -1;
+    while (arch_tab[++index].name)
     {
-        if (strcmp(arch_flags[i].name, name) == 0)
-        {
-            if (arch_flag != NULL)
-                *arch_flag = arch_flags[i];
-            return (1);
-        }
+        if (arch_tab[index].cputype == cputype &&
+            arch_tab[index].cpusubtype == cpusubtype)
+            break;
     }
-    if (arch_flag != NULL)
-        memset(arch_flag, '\0', sizeof(struct arch_flag));
-    return (0);
+    return (arch_tab[index]);
 }

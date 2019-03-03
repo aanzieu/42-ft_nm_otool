@@ -6,13 +6,13 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:51:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/02/26 15:36:55 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/03 15:37:19 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/ft_nm.h"
 
-static void print_value_64(struct nlist_64 array, char c, t_obj *obj)
+static void print_value_64(t_seg_list array, char c, t_obj *obj)
 {
     (void)c;
     if ((obj->filetype == MH_OBJECT && (array.n_type & N_TYPE) == N_UNDF && array.n_type & N_EXT && array.n_value > 0) || (array.n_type & N_SECT && array.n_value != 0))
@@ -28,11 +28,12 @@ static void print_value_64(struct nlist_64 array, char c, t_obj *obj)
     ft_putchar(' ');
 }
 
-static int print_nm_64(t_obj *obj, struct nlist_64 array, char *stringtable, char c)
+static int print_nm_64(t_obj *obj, t_seg_list array, char *stringtable, char c)
 {
     int i;
-    char *check;
-
+    // char *check = NULL;
+(void)stringtable;
+(void)obj;
     // if (get_nm_flags()->a_up)
     // print_path(input);
     // if (!get_nm_flags()->j && !get_nm_flags()->u)
@@ -46,13 +47,14 @@ static int print_nm_64(t_obj *obj, struct nlist_64 array, char *stringtable, cha
     // print_m(sym);
     // }
     i = 0;
-    check = checkoff_string(obj, stringtable, array.n_un.n_strx);
-    if (check)
+    // check = checkoff_string(obj, stringtable, ft_strlen(array.name));
+    if (array.name)
     {
-        while (check_sizeoff(obj, (void *)check, i + 1))
+        // ft_putstr(array.name);
+        while (check_sizeoff(obj, (void *)array.name, i + 1))
         {
-            ft_putchar(check[i]);
-            if (check[i] == '\0')
+            ft_putchar(array.name[i]);
+            if (array.name[i] == '\0')
                 break;
             i++;
         }
@@ -74,31 +76,33 @@ static int print_nm_64(t_obj *obj, struct nlist_64 array, char *stringtable, cha
 // 		// printf("\n%s %s:\n", obj->path, stat.arch_name);
 // }
 
-int for_each_symtab_64(t_obj *obj, struct symtab_command *sym, struct nlist_64 *array, char *stringtable)
+int for_each_symtab_64(t_obj *obj, struct symtab_command *sym, t_list *array, char *stringtable)
 {
     uint32_t index;
     char c;
+    t_seg_list	seg;
+	// t_list	*lst;
+    (void)sym;
 
     index = 0;
-    while (index < sym->nsyms)
+    if (print_cpu_type(obj))
+		return Err;
+    while (array)
     {
-        if (!obj->swap)
-        {
-            swap_nlist_64(array[index]);
-        }
-        c = get_char_type_64(array[index], obj);
-        if (array[index].n_type & N_STAB)
+		seg = *(t_seg_list *)array->content;
+        c = get_char_type_64(seg, obj);
+        if (seg.n_type & N_STAB)
             ;
         else
         {
-            print_value_64(array[index], c, obj);
-            if (print_nm_64(obj, array[index], stringtable, c))
+            print_value_64(seg, c, obj);
+            if (print_nm_64(obj, seg, stringtable, c))
             {
                 ft_putstr("erreur nm print function printsym_64\n");
                 return Err;
             }
         }
-        index++;
+		array = array->next;
     }
     return Ok;
 }

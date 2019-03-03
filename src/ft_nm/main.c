@@ -6,14 +6,26 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 13:16:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/02/25 12:54:20 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/03 15:11:08 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/ft_nm.h"
 
-
-
+static int parse_data_nm(t_obj *obj)
+{
+    if (nm(obj))
+    {
+        puts("error");
+        return (EXIT_FAILURE);
+    }
+    if (munmap((void *)obj->data, obj->size_data) < 0)
+    {
+        perror("munmap failed");
+        return (EXIT_FAILURE);
+    }
+    return EXIT_SUCCESS;
+}
 
 /**
  * Check fd and file status 
@@ -38,21 +50,14 @@ static int open_and_map(char *arg, t_obj *obj)
         obj->data = data;
         obj->size_data = buf.st_size;
     }
-    if(nm(obj)){
-        puts("error");
-        return (EXIT_FAILURE);
-    }
-    if (munmap((void *)obj->data, obj->size_data) < 0)
-    {
-        perror("munmap failed");
-        return (EXIT_FAILURE);
-    }
-    return EXIT_SUCCESS;
+    return (parse_data_nm(obj));
 }
 
 static int open_arg(char **arg, int i)
 {
     t_obj obj;
+
+    obj.is_fat = False;
 
     if ((open_and_map(arg[i], &obj)) != 0)
         return (EXIT_FAILURE);
