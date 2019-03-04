@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 15:23:48 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/03 15:32:24 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/04 12:52:40 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 // code source https://opensource.apple.com/source/cctools/cctools-573.1/libstuff/arch.c for type of CPU infos
 
 static const t_arch_flag arch_tab[] = {
-    {"error", CPU_TYPE_ANY, CPU_SUBTYPE_MULTIPLE},
     {"any", CPU_TYPE_ANY, CPU_SUBTYPE_MULTIPLE},
     {"little", CPU_TYPE_ANY, CPU_SUBTYPE_LITTLE_ENDIAN},
     {"big", CPU_TYPE_ANY, CPU_SUBTYPE_BIG_ENDIAN},

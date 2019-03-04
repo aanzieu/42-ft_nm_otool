@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:51:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/03 15:29:18 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/04 11:17:42 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,7 @@ static int print_nm_32(t_obj *obj, t_seg_list array, char *stringtable, char c)
     // char *check;
     int i;
     (void)stringtable;
-    // if (get_nm_flags()->a_up)
-    // print_path(input);
-    // if (!get_nm_flags()->j && !get_nm_flags()->u)
-    // {
-    // if (!get_nm_flags()->m)
+    
     ft_putchar(c);
     ft_putchar(' ');
     if (array.n_type & N_STAB)
@@ -51,10 +47,9 @@ static int print_nm_32(t_obj *obj, t_seg_list array, char *stringtable, char c)
     {
         while (check_sizeoff(obj, (void *)array.name, i + 1))
         {
-            ft_putchar(array.name[i]);
             if (array.name[i] == '\0')
                 break;
-            i++;
+            ft_putchar(array.name[i++]);
         }
     }
     else

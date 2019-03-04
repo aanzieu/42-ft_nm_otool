@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 08:58:27 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/03 15:33:39 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/04 15:26:33 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,15 @@
 #define FT_UTILS_H
 
 # ifdef __i386__
-#  define GET_ARCH "i386"
+#  define ARCH_TYPE "i386"
 # endif
 
 # ifdef __x86_64__
-#  define GET_ARCH "x86_64"
+#  define ARCH_TYPE "x86_64"
 # endif
 
 # ifdef __ppc__
-#  define GET_ARCH "ppc"
-# endif
-
-# ifndef __i386__
-#  ifndef __ppc__
-#   ifndef __x86_64__
-#    define GET_ARCH ""
-#   endif
-#  endif
+#  define ARCH_TYPE "ppc"
 # endif
 
 //  open, openat -- open or create a file for reading or writing - open(2)
@@ -91,7 +83,9 @@ typedef struct s_obj
 
     t_bool swap; /* Define if mg need swap */
     t_bool is_fat;
+
     int index_sec;
+
     int tss; /*text section symbol */
     int bss; /*text section data*/
     int dss; /*text section data*/
@@ -117,14 +111,19 @@ void swap_nlist(struct nlist *array);
 void swap_nlist_64(struct nlist_64 *array);
 void swap_mach_header_64(struct mach_header_64 *h);
 void swap_mach_header(struct mach_header *h);
+void swap_fat_header(struct fat_header *fh);
+
+int  errors_fd(char *str, int fd, t_return err);
 
 void swap_symtab_command(struct symtab_command *sym);
 void swap_load_commands(struct load_command *lc);
+void swap_fat_arch_64(struct fat_arch_64 *fh);
+void swap_fat_arch(struct fat_arch *fh);
 
 char ntype_if_upper(char c, uint8_t ntype);
 
 char *checkoff_string(t_obj *obj, char *str, uint32_t off);
-int check_sizeoff(t_obj *obj, const void *start, size_t size);
+void *check_sizeoff(t_obj *obj, const void *start, size_t size);
 void *check_sizeoff_move(t_obj *obj, const void *start, size_t size);
 t_bool checkoff_endofstring(t_obj *obj, char *str);
 t_bool print_cpu_type(t_obj *input);

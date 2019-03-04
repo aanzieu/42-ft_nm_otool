@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:07:21 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/02/26 08:25:43 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/04 11:57:26 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,12 @@ static int choose_handler(t_obj *obj, uint32_t mg)
         return handle_64(obj); //return (M_64);
     else if (obj->magic == MH_MAGIC || obj->magic == MH_CIGAM)
         return handle_32(obj); //return (M_32);
-    // else if (obj->magic == FAT_MAGIC || obj->magic == FAT_CIGAM)
-    // handle_fat_32(obj); //return (M_FAT);
-    // else if (obj->magic == FAT_CIGAM_64 || obj->magic == FAT_MAGIC_64)
-    // handle_fat_64(obj); //return (M_FAT_64);
-    // else if (secure_add(*arch, arch->data, SARMAG) &&
-    // !ft_strncmp(ARMAG, (char *)arch->data, SARMAG))
-    // return (M_LIB);
+    else if (obj->magic == FAT_MAGIC || obj->magic == FAT_CIGAM)
+        return handle_fat_32(obj); //return (M_FAT);
+    else if (obj->magic == FAT_CIGAM_64 || obj->magic == FAT_MAGIC_64)
+        return handle_fat_64(obj); //return (M_FAT_64);
+    
+    puts("chooser hnadnerl");
     return (Err);
 }
 

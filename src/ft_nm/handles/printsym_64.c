@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:51:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/03 15:37:19 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/04 13:01:32 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ static int print_nm_64(t_obj *obj, t_seg_list array, char *stringtable, char c)
 {
     int i;
     // char *check = NULL;
-(void)stringtable;
-(void)obj;
+    (void)stringtable;
     // if (get_nm_flags()->a_up)
     // print_path(input);
     // if (!get_nm_flags()->j && !get_nm_flags()->u)
@@ -53,10 +52,9 @@ static int print_nm_64(t_obj *obj, t_seg_list array, char *stringtable, char c)
         // ft_putstr(array.name);
         while (check_sizeoff(obj, (void *)array.name, i + 1))
         {
-            ft_putchar(array.name[i]);
             if (array.name[i] == '\0')
                 break;
-            i++;
+            ft_putchar(array.name[i++]);
         }
     }
     else
@@ -85,8 +83,8 @@ int for_each_symtab_64(t_obj *obj, struct symtab_command *sym, t_list *array, ch
     (void)sym;
 
     index = 0;
-    if (print_cpu_type(obj))
-		return Err;
+    if (!print_cpu_type(obj))
+		;// return Err;
     while (array)
     {
 		seg = *(t_seg_list *)array->content;

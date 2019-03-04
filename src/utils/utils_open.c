@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 09:36:50 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/02/26 08:09:56 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/04 15:48:56 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int map_file_memory(int const fd, size_t const size, void **ptr)
 {
-    if ((*ptr = mmap(0, size, PROT_READ, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
+    if ((*ptr = mmap(0, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0)) == MAP_FAILED)
     {
         perror("mmap failed");
         return (Err);

@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 13:16:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/03 15:11:08 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/04 13:59:22 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,10 @@ static int open_arg(char **arg, int i)
 
     obj.is_fat = False;
 
-    if ((open_and_map(arg[i], &obj)) != 0)
+    if ((open_and_map(arg[i], &obj)) != 0){
         return (EXIT_FAILURE);
-    return (EXIT_SUCCESS);
+    }
+    return (0);
 }
 
 // ERROR MESSAGE

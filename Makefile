@@ -6,7 +6,7 @@
 #    By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 11:15:53 by aanzieu           #+#    #+#              #
-#    Updated: 2019/03/03 14:52:58 by aanzieu          ###   ########.fr        #
+#    Updated: 2019/03/04 15:47:00 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = ft_nm
 MAKE = make
 MAKE_FLAGS = --no-print-directory
 
+ASAN_FLAGS = -fsanitize=address -fno-omit-frame-pointer -Wno-format-security -g
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -23,7 +24,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 INCLUDE = -I include/ -I libft
 
 CC = gcc -g
-CC_FLAGS = -Wall -Werror -Wextra
+CC_FLAGS = -Wall -Werror -Wextra 
 
 RM = rm -f
 RF = rm -rf
@@ -41,6 +42,8 @@ SRC =	$(SRC_DIR)/ft_nm/main.c \
 		$(SRC_DIR)/ft_nm/handles/printsym_32.c \
 		$(SRC_DIR)/ft_nm/handles/loadcmd_32.c \
 		\
+		$(SRC_DIR)/ft_nm/handles/handle_fat.c \
+		\
 		$(SRC_DIR)/ft_nm/handles/handle_64.c \
 		$(SRC_DIR)/ft_nm/handles/typechar_64.c \
 		$(SRC_DIR)/ft_nm/handles/listsort_64.c \
@@ -55,6 +58,7 @@ SRC =	$(SRC_DIR)/ft_nm/main.c \
 		$(SRC_DIR)/utils/checkoff.c \
 		$(SRC_DIR)/utils/lstsort.c \
 		$(SRC_DIR)/utils/utils_open.c \
+		$(SRC_DIR)/utils/errors.c \
 		$(SRC_DIR)/utils/utils_print.c \
 
 ###########################################
@@ -74,7 +78,7 @@ $(NAME): $(OBJ)
 	printf '\033[K\033[32m[✔] %s\n\033[0m' "--Compiling Sources--------"
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	$(CC) $(CC_FLAGS) -o bin/$(NAME) $(OBJ) $(LIBFT)
+	$(CC) $(CC_FLAGS) $(ASAN_FLAGS) -o bin/$(NAME) $(OBJ) $(LIBFT)
 	printf '\033[1;7m'
 	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
 
@@ -85,7 +89,7 @@ $(NAME): $(OBJ)
 obj/%.o: src/%.c
 	if [ ! -d obj ]; then mkdir -p obj; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	$(CC) $(CC_FLAGS) -c $(INCLUDE) $< -o $@
+	$(CC) $(CC_FLAGS) $(ASAN_FLAGS) -c $(INCLUDE) $< -o $@
 	printf '\033[K\033[0m[✔] %s\n\033[0m\033[1A' "$<"
 
 ##############################

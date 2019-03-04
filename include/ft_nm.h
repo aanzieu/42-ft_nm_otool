@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:32:18 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/03 14:52:48 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/04 11:57:13 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ void swap_magic(void);
 
 int handle_64(t_obj *obj);
 int handle_32(t_obj *obj);
+int handle_fat_32(t_obj *obj);
+int handle_fat_64(t_obj *obj);
+
 
 int parse_load_command_64(t_obj *obj);
 int parse_load_command_32(t_obj *obj);
