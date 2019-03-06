@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:32:18 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/04 11:57:13 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/06 15:17:02 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ int handle_32(t_obj *obj);
 int handle_fat_32(t_obj *obj);
 int handle_fat_64(t_obj *obj);
 
+int parse_fat_arch_32(t_obj *obj, struct fat_header *ft);
+int parse_fat_arch_64(t_obj *obj, struct fat_header *ft);
 
-int parse_load_command_64(t_obj *obj);
-int parse_load_command_32(t_obj *obj);
+int parse_load_command_64(t_obj *obj, struct load_command *lc);
+int parse_load_command_32(t_obj *obj, struct load_command *lc);
 
 /*
 *  Print

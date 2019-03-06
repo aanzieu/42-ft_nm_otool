@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:51:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/04 13:01:32 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/06 15:52:18 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ static int print_nm_64(t_obj *obj, t_seg_list array, char *stringtable, char c)
         }
     }
     else
-    {
-        ft_putstr("bad string index\n");
-        return Err;
-    }
+        return (errors_fd(MALFORMED, ERR_STR, 1, Err));
     ft_putchar('\n');
     return Ok;
 }
@@ -78,16 +75,16 @@ int for_each_symtab_64(t_obj *obj, struct symtab_command *sym, t_list *array, ch
 {
     uint32_t index;
     char c;
-    t_seg_list	seg;
-	// t_list	*lst;
+    t_seg_list seg;
+    // t_list	*lst;
     (void)sym;
 
     index = 0;
-    if (!print_cpu_type(obj))
-		;// return Err;
+    // if (!print_cpu_type(obj))
+    // 	;// return Err;
     while (array)
     {
-		seg = *(t_seg_list *)array->content;
+        seg = *(t_seg_list *)array->content;
         c = get_char_type_64(seg, obj);
         if (seg.n_type & N_STAB)
             ;
@@ -95,12 +92,9 @@ int for_each_symtab_64(t_obj *obj, struct symtab_command *sym, t_list *array, ch
         {
             print_value_64(seg, c, obj);
             if (print_nm_64(obj, seg, stringtable, c))
-            {
-                ft_putstr("erreur nm print function printsym_64\n");
                 return Err;
-            }
         }
-		array = array->next;
+        array = array->next;
     }
     return Ok;
 }

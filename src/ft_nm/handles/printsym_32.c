@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:51:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/04 11:17:42 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/06 16:02:00 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int print_nm_32(t_obj *obj, t_seg_list array, char *stringtable, char c)
     // char *check;
     int i;
     (void)stringtable;
-    
+
     ft_putchar(c);
     ft_putchar(' ');
     if (array.n_type & N_STAB)
@@ -53,10 +53,7 @@ static int print_nm_32(t_obj *obj, t_seg_list array, char *stringtable, char c)
         }
     }
     else
-    {
-        ft_putstr("bad string index\n");
-        return Err;
-    }
+        return (errors_fd(MALFORMED, ERR_STR, 1, Err));
     ft_putchar('\n');
     return Ok;
 }
@@ -76,7 +73,7 @@ int for_each_symtab_32(t_obj *obj, struct symtab_command *sym, t_list *array, ch
     (void)sym;
     index = 0;
     t_seg_list seg;
-    // t_list	*lst;
+
     // if (print_cpu_type(obj))
     //     return Err;
     while (array) //
@@ -89,13 +86,9 @@ int for_each_symtab_32(t_obj *obj, struct symtab_command *sym, t_list *array, ch
         {
             print_value_32(seg, c, obj);
             if (print_nm_32(obj, seg, stringtable, c))
-            {
-                ft_putstr("erreur nm print function printsym_32\n");
                 return Err;
-            }
         }
         array = array->next;
-        // index++;
     }
     return Ok;
 }

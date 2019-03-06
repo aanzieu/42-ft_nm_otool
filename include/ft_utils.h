@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 08:58:27 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/04 15:26:33 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/06 15:41:24 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,32 @@
 #include <sys/stat.h>
 
 #include "../libft/libft.h"
+
+# define ERR_OPEN	"No such file or directory"
+# define ERR_STAT	"a problem was encountered with fstat"
+# define ERR_MAP	"The file was not recognized as a valid object file"
+# define ERR_MUNMAP	"a problem was encountered with munmap"
+# define NOT_VALID	"The file was not recognized as a valid object file"
+
+
+# define MALFORMED "truncated or malformed "
+# define ERR_LC "(offset field of load_command not past)"
+# define ERR_MH64 "(offset field of mach-Header_64 not past)"
+# define ERR_MH "(offset field of mach-Header not past)"
+# define ERR_FH64 "(offset filed data from fat_arch_64 not past, and is empty)"
+# define ERR_FH "(offset filed data from fat_arch not past, and is empty)"
+
+# define ERR_SEG64 "(offset filed data from segment command 64 not past)"
+# define ERR_SEG "(offset filed data from segment_command not past)"
+# define ERR_SECT64 "(offset filed data from section_64 not past)"
+# define ERR_SECT "(offset filed data from section not past)"
+# define ERR_SYMTAB "(offset filed data from synmbat not past)"
+# define ERR_STR "bad string index"
+# define ERR_LC "(offset field of load_command not past)"
+# define ERR_LC "(offset field of load_command not past)"
+# define ERR_LC "(offset field of load_command not past)"
+# define ERR_LC "(offset field of load_command not past)"
+
 
 typedef enum e_endian
 {
@@ -113,7 +139,7 @@ void swap_mach_header_64(struct mach_header_64 *h);
 void swap_mach_header(struct mach_header *h);
 void swap_fat_header(struct fat_header *fh);
 
-int  errors_fd(char *str, int fd, t_return err);
+int  errors_fd(char *str, char *line, int fd, t_return err);
 
 void swap_symtab_command(struct symtab_command *sym);
 void swap_load_commands(struct load_command *lc);

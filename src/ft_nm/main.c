@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 13:16:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/04 13:59:22 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/06 15:24:07 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,10 @@
 static int parse_data_nm(t_obj *obj)
 {
     if (nm(obj))
-    {
-        puts("error");
-        return (EXIT_FAILURE);
-    }
+        return (Err);
     if (munmap((void *)obj->data, obj->size_data) < 0)
-    {
-        perror("munmap failed");
-        return (EXIT_FAILURE);
-    }
-    return EXIT_SUCCESS;
+        return (errors_fd(ERR_MUNMAP, "", 1, Err));
+    return Ok;
 }
 
 /**
@@ -39,11 +33,11 @@ static int open_and_map(char *arg, t_obj *obj)
 
     data = NULL;
     if ((fd = open_file(arg)) < 0)
-        return (EXIT_FAILURE);
+        return (errors_fd(ERR_OPEN, "", 1, Err));
     if (get_file_statut(fd, &buf))
-        return (EXIT_FAILURE);
+        return (errors_fd(ERR_STAT, "", 1, Err));
     if (map_file_memory(fd, buf.st_size, &data))
-        return (EXIT_FAILURE);
+        return (errors_fd(ERR_MAP, "", 1, Err));
     if (obj)
     {
         obj->path = ft_strdup(arg);
@@ -58,8 +52,8 @@ static int open_arg(char **arg, int i)
     t_obj obj;
 
     obj.is_fat = False;
-
-    if ((open_and_map(arg[i], &obj)) != 0){
+    if ((open_and_map(arg[i], &obj)) != 0)
+    {
         return (EXIT_FAILURE);
     }
     return (0);

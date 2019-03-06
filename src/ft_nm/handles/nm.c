@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:07:21 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/04 11:57:26 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/06 15:21:14 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ static int choose_handler(t_obj *obj, uint32_t mg)
         return handle_fat_32(obj); //return (M_FAT);
     else if (obj->magic == FAT_CIGAM_64 || obj->magic == FAT_MAGIC_64)
         return handle_fat_64(obj); //return (M_FAT_64);
-    
-    puts("chooser hnadnerl");
-    return (Err);
+    return (errors_fd(ERR_MAP, "Another Type of Magic Number", 1, Err));
 }
 
 int nm(t_obj *obj)
@@ -54,9 +52,6 @@ int nm(t_obj *obj)
 
     head = find_header_type(obj);
     if (head == 42)
-    {
-        puts("not valid binaire");
-        return (Err);
-    }
+        return (errors_fd(ERR_MAP, "", 1, Err));
     return choose_handler(obj, obj->magic);
 }

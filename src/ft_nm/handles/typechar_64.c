@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:56:39 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/03 12:08:15 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/06 14:41:15 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
  * */
 static char find_sect_type_64(t_seg_list list, t_obj *obj)
 {
-    if (list.n_sect == obj->tss)
+    if ((int)list.n_sect == obj->tss)
         return (ntype_if_upper('t', list.n_type));
-    else if (list.n_sect == obj->dss)
+    else if ((int)list.n_sect == obj->dss)
         return (ntype_if_upper('d', list.n_type));
-    else if (list.n_sect == obj->bss)
+    else if ((int)list.n_sect == obj->bss)
         return (ntype_if_upper('b', list.n_type));
     return (ntype_if_upper('s', list.n_type));
 }
