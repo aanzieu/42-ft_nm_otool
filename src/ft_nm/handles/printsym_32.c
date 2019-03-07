@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:51:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/06 16:02:00 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/07 16:57:33 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void print_value_32(t_seg_list array, char c, t_obj *obj)
     (void)c;
     if ((obj->filetype == MH_OBJECT && (array.n_type & N_TYPE) == N_UNDF && array.n_type & N_EXT && array.n_value > 0) || (array.n_type & N_SECT && array.n_value != 0))
     {
-        ft_putnbr_ll_base(array.n_value, "0123456789abcdef");
+        ft_putnbr_ll_base(array.n_value, "0123456789abcdef", 8);
     }
     else if ((array.n_type & N_SECT && array.n_value == 0))
     {
@@ -38,9 +38,9 @@ static int print_nm_32(t_obj *obj, t_seg_list array, char *stringtable, char c)
     ft_putchar(' ');
     if (array.n_type & N_STAB)
         ft_putstr(" DEBUG SYMBOL ");
-    // else if (get_nm_flags()->m)
-    // print_m(sym);
-    // }
+    else if (obj->flags->m)
+        print_m(sym);
+    }
     i = 0;
     // check = checkoff_string(obj, stringtable, ft_strlen(array.name));
     if (array.name)

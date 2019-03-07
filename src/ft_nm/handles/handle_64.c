@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:12:03 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/06 15:29:42 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/07 14:09:53 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ static int parse_each_arch_64(t_obj *obj, struct fat_arch_64 *arch)
         return (errors_fd(MALFORMED, ERR_FH64, 1, Err));
     tmp.size_data = arch->size;
     tmp.path = obj->path;
+    tmp.flags = obj->flags;
+    tmp.is_fat = obj->is_fat;
+    tmp.swap = obj->swap;
     if (!tmp.data || !(check_sizeoff(obj, tmp.data, tmp.size_data)) || nm(&tmp))
         return (Err);
     return 0;

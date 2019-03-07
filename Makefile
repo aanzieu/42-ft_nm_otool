@@ -6,7 +6,7 @@
 #    By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 11:15:53 by aanzieu           #+#    #+#              #
-#    Updated: 2019/03/04 15:47:00 by aanzieu          ###   ########.fr        #
+#    Updated: 2019/03/07 11:41:30 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC_DIR = src
 SRC =	$(SRC_DIR)/ft_nm/main.c \
 		\
 		$(SRC_DIR)/ft_nm/handles/nm.c \
+		$(SRC_DIR)/ft_nm/handles/flags_options.c \
 		$(SRC_DIR)/ft_nm/handles/handle_32.c \
 		$(SRC_DIR)/ft_nm/handles/typechar_32.c \
 		$(SRC_DIR)/ft_nm/handles/printsym_32.c \
@@ -60,6 +61,7 @@ SRC =	$(SRC_DIR)/ft_nm/main.c \
 		$(SRC_DIR)/utils/utils_open.c \
 		$(SRC_DIR)/utils/errors.c \
 		$(SRC_DIR)/utils/utils_print.c \
+		$(SRC_DIR)/utils/getoptions.c \
 
 ###########################################
 ##--- Use Patsubst to find .o from .c ---##

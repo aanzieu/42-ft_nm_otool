@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:51:59 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/06 15:52:18 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/07 16:54:39 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void print_value_64(t_seg_list array, char c, t_obj *obj)
     (void)c;
     if ((obj->filetype == MH_OBJECT && (array.n_type & N_TYPE) == N_UNDF && array.n_type & N_EXT && array.n_value > 0) || (array.n_type & N_SECT && array.n_value != 0))
     {
-        ft_putnbr_ull_base(array.n_value, "0123456789abcdef");
+        ft_putnbr_ull_base(array.n_value, "0123456789abcdef", 16);
     }
     else if ((array.n_type & N_SECT && array.n_value == 0))
     {

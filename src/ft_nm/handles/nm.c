@@ -6,11 +6,12 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:07:21 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/06 15:21:14 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/07 11:22:22 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/ft_nm.h"
+
 
 static uint32_t get_magic_number(t_obj *obj)
 {

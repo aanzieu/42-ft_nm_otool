@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 14:51:13 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/03 15:03:06 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/07 16:45:53 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_list *parse_nlist_32(t_obj *obj, char *stringtable, struct nlist array)
 	if (!(elem_sym = (t_seg_list *)ft_memalloc(sizeof(t_seg_list) + 1)))
 		return (NULL);
 	elem_sym->name = checkoff_string(obj, stringtable, array.n_un.n_strx);
-	elem_sym->n_value = array.n_value;
+	elem_sym->n_value = (uint64_t)array.n_value;
 	// elem_sym->arch = ARCH_32;
 	elem_sym->n_type = array.n_type;
 	elem_sym->n_sect = array.n_sect;
