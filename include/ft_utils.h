@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 08:58:27 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/07 14:09:09 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/09 17:17:57 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 // close -- delete a descriptor - close(2)
 // pwrite, write, writev -- write output - write(2)
 #include <unistd.h>
+#include <ar.h>
 // Fat
 #include <mach-o/fat.h>
 // Generic
@@ -133,7 +134,7 @@ typedef struct s_obj
     uint32_t sizeofcmds;      /* the size of all the load commands */
     struct load_command *lc;
     struct symtab_command *sym;
-    t_list      *list;
+    t_list      *library;
     t_option    *flags;
     t_bool swap; /* Define if mg need swap */
     t_bool is_fat;

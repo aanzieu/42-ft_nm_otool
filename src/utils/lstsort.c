@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 14:45:12 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/04 11:10:02 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/09 14:52:32 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static t_bool cmp_ascii(t_obj *obj, t_list *lst_a, t_list *lst_b)
 	int ret;
 	a = (t_seg_list *)(lst_a->content);
 	b = (t_seg_list *)(lst_b->content);
-	if(checkoff_endofstring(obj, a->name) && checkoff_endofstring(obj, b->name)){
+	if (checkoff_endofstring(obj, a->name) && checkoff_endofstring(obj, b->name))
+	{
 		return (False);
 	}
 	// ret = ft_strcmp(a->name, b->name);
@@ -27,6 +28,8 @@ static t_bool cmp_ascii(t_obj *obj, t_list *lst_a, t_list *lst_b)
 		return (a->n_value < b->n_value);
 	if (ft_strcmp(a->name, b->name) < 0)
 		ret = True;
+	else if (ft_strcmp(a->name, b->name) == 0)
+		ret = a->n_value > b->n_value;
 	else
 		ret = False;
 	return ((t_bool)ret);
@@ -43,10 +46,12 @@ static t_bool cmp_num(t_obj *obj, t_list *lst_a, t_list *lst_b)
 	ret = a->n_value < b->n_value;
 	if (!ret)
 	{
-		if(checkoff_endofstring(obj, a->name) && checkoff_endofstring(obj, b->name)){
+		if (checkoff_endofstring(obj, a->name) && checkoff_endofstring(obj, b->name))
+		{
 			return (False);
 		}
-		if (!(a->name) || !(b->name)){
+		if (!(a->name) || !(b->name))
+		{
 			return (False);
 		}
 		// ret = ft_strcmp(a->name, b->name);
@@ -58,15 +63,15 @@ static t_bool cmp_num(t_obj *obj, t_list *lst_a, t_list *lst_b)
 	return ((t_bool)ret);
 }
 
-void	sort_ascii(t_obj *obj, t_list **lst)
+void sort_ascii(t_obj *obj, t_list **lst)
 {
-	t_list	*new_lst;
-	t_list	*smaller;
-	t_list	*index;
+	t_list *new_lst;
+	t_list *smaller;
+	t_list *index;
 
 	new_lst = NULL;
 	if (!lst || !*lst)
-		return ;
+		return;
 	while (*lst)
 	{
 		index = *lst;
@@ -74,7 +79,14 @@ void	sort_ascii(t_obj *obj, t_list **lst)
 		while (index)
 		{
 			if (cmp_ascii(obj, smaller, index))
+			// {
+			// 	if (cmp_num(obj, smaller, index))
+			// 		smaller = index;
+			// }
+			// else
+			// {
 				smaller = index;
+			// }
 			index = index->next;
 		}
 		ft_lstremove(lst, smaller);
@@ -83,15 +95,15 @@ void	sort_ascii(t_obj *obj, t_list **lst)
 	*lst = new_lst;
 }
 
-void	sort_num(t_obj *obj, t_list **lst)
+void sort_num(t_obj *obj, t_list **lst)
 {
-	t_list	*new_lst;
-	t_list	*smaller;
-	t_list	*index;
+	t_list *new_lst;
+	t_list *smaller;
+	t_list *index;
 
 	new_lst = NULL;
 	if (!lst || !*lst)
-		return ;
+		return;
 	while (*lst)
 	{
 		index = *lst;

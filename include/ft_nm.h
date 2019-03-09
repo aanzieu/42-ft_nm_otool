@@ -6,20 +6,21 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:32:18 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/07 15:30:58 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/09 16:56:55 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_NM_H
-#define FT_NM_H
+# define FT_NM_H
 
 #include "ft_utils.h"
 
-#define NM "ft_nm"
+#define PROGRAM "ft_nm"
 
 typedef struct s_seg_list
 {
     char *name;
+    char *library;
     // segment_command
     char sectname[16];
     char segname[16];
@@ -27,6 +28,7 @@ typedef struct s_seg_list
     uint8_t n_type;
     uint8_t n_sect;
     uint64_t n_value;
+    int16_t n_desc;
     // uint32_t n_value;
 
 } t_seg_list;
@@ -73,8 +75,8 @@ int parse_load_command_32(t_obj *obj, struct load_command *lc);
 char get_char_type_64(t_seg_list seg_list, t_obj *obj);
 char get_char_type_32(t_seg_list seg_list, t_obj *obj);
 
-int for_each_symtab_32(t_obj *obj, struct symtab_command *sym, t_list *array, char *stringtable);
-int for_each_symtab_64(t_obj *obj, struct symtab_command *sym, t_list *array, char *stringtable);
+int for_each_symtab_32(t_obj *obj, t_list *array);
+int for_each_symtab_64(t_obj *obj, t_list *array);
 
 /*
 **
@@ -85,5 +87,8 @@ t_list *sort_64(t_obj *obj, struct symtab_command *sym, char *stringtable);
 t_list *sort_32(t_obj *obj, struct symtab_command *sym, char *stringtable);
 void	sort_ascii(t_obj *obj, t_list **lst);
 void	sort_num(t_obj *obj, t_list **lst);
+
+void print_option_m(t_seg_list seg, t_obj *obj);
+void print_nstabs(t_seg_list seg, t_obj *obj);
 
 #endif

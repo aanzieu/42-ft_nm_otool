@@ -6,11 +6,13 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 11:23:39 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/07 12:39:16 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/09 15:46:51 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/ft_nm.h"
+
+
 
 static void get_flag_options(char flags, t_option *option)
 {

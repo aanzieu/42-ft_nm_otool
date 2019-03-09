@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 07:49:26 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/06 16:06:31 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/09 15:18:15 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int read_symbat_command_32(t_obj *obj, struct symtab_command *sym)
         return (errors_fd(MALFORMED, ERR_SYMTAB, 1, Err));
     if (!(new = sort_32(obj, sym, stringtable)))
         return (errors_fd(MALFORMED, ERR_SYMTAB, 1, Err));
-    return (for_each_symtab_32(obj, sym, new, stringtable));
+    return (for_each_symtab_32(obj, new));
 }
 
 static int read_section_32(t_obj *obj, struct segment_command *segment, size_t index)

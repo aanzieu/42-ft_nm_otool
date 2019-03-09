@@ -6,12 +6,11 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:07:21 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/07 11:22:22 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/09 17:18:26 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/ft_nm.h"
-
 
 static uint32_t get_magic_number(t_obj *obj)
 {
@@ -44,6 +43,8 @@ static int choose_handler(t_obj *obj, uint32_t mg)
         return handle_fat_32(obj); //return (M_FAT);
     else if (obj->magic == FAT_CIGAM_64 || obj->magic == FAT_MAGIC_64)
         return handle_fat_64(obj); //return (M_FAT_64);
+    else if (check_sizeoff(obj, obj->data, SARMAG) && !ft_strncmp(ARMAG, (char *)obj->data, SARMAG))
+        return (errors_fd(ERR_MAP, "ARCH LIBRARY", 1, Err));
     return (errors_fd(ERR_MAP, "Another Type of Magic Number", 1, Err));
 }
 
