@@ -6,37 +6,45 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/04 11:55:18 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/06 15:24:57 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/12 16:13:31 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/ft_nm.h"
 
-
-
-int handle_fat_32(t_obj *obj)
+int			get_header_fat(t_obj *input, void const *add,
+		struct fat_header *header)
 {
-    struct fat_header fat_header;
-
-    if (!check_sizeoff(obj, obj->data, sizeof(struct fat_header)))
-        return (errors_fd(MALFORMED, "(offset field of Fat-Header not past)", 1, Err));
-    fat_header = *(struct fat_header *)obj->data;
-    if (!obj->swap)
-        swap_fat_header(&fat_header);
-    return (parse_fat_arch_32(obj, &fat_header));
+	if (check_sizeoff(input, add, sizeof(struct mach_header_64)))
+	{
+		*header = *(struct fat_header *)add;
+		if (!input->swap)
+			swap_fat_header(header);
+		return (0);
+	}
+	return (1);
 }
 
-///////---------////
-
-
-int handle_fat_64(t_obj *obj)
+int			handle_fat_32(t_obj *obj)
 {
-    struct fat_header fat_header;
+	struct fat_header header;
 
-    if (!check_sizeoff(obj, obj->data, sizeof(struct fat_header)))
-        return (errors_fd(MALFORMED, "(offset field of Fat-Header not past)", 1, Err));
-    fat_header = *(struct fat_header *)obj->data;
-    if (!obj->swap)
-        swap_fat_header(&fat_header);
-    return (parse_fat_arch_64(obj, &fat_header));
+	if (get_header_fat(obj, obj->data, &header))
+	{
+		return (errors_fd(MALFORMED,
+					"(offset field of Fat-Header not past)", 1, Err));
+	}
+	return (parse_fat_arch_32(obj, &header));
+}
+
+int			handle_fat_64(t_obj *obj)
+{
+	struct fat_header header;
+
+	if (get_header_fat(obj, obj->data, &header))
+	{
+		return (errors_fd(MALFORMED,
+					"(offset field of Fat-Header not past)", 1, Err));
+	}
+	return (parse_fat_arch_64(obj, &header));
 }

@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   is_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/04 13:35:19 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/13 10:11:58 by aanzieu          ###   ########.fr       */
+/*   Created: 2019/03/12 10:53:45 by aanzieu           #+#    #+#             */
+/*   Updated: 2019/03/13 10:20:52 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/ft_utils.h"
 
-int		errors_fd(const char *str, const char *line, int fd, t_return err)
+uint16_t	ifswap16(t_obj *obj, uint16_t x)
 {
-	ft_putstr_fd(str, fd);
-	ft_putchar(' ');
-	ft_putstr_fd(C_RED, fd);
-	ft_putstr_fd(line, fd);
-	ft_putstr_fd(C_NONE, fd);
-	ft_putchar('\n');
-	return (err);
+	if (!obj->swap)
+		return (ft_swap_int16(x));
+	return (x);
 }
 
-void	*errors_fd_null(const char *str, const char *line, int fd)
+uint32_t	ifswap32(t_obj *obj, uint32_t x)
 {
-	ft_putstr_fd(str, fd);
-	ft_putchar(' ');
-	ft_putstr_fd(line, fd);
-	ft_putchar('\n');
-	return (NULL);
+	if (!obj->swap)
+		return (ft_swap_uint32(x));
+	return (x);
+}
+
+uint64_t	ifswap64(t_obj *obj, uint64_t x)
+{
+	if (!obj->swap)
+		return (ft_swap_int64(x));
+	return (x);
 }

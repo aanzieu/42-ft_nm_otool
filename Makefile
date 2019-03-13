@@ -6,7 +6,7 @@
 #    By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 11:15:53 by aanzieu           #+#    #+#              #
-#    Updated: 2019/03/07 11:41:30 by aanzieu          ###   ########.fr        #
+#    Updated: 2019/03/13 10:33:52 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRC =	$(SRC_DIR)/ft_nm/main.c \
 		$(SRC_DIR)/ft_nm/handles/loadcmd_32.c \
 		\
 		$(SRC_DIR)/ft_nm/handles/handle_fat.c \
+		$(SRC_DIR)/ft_nm/handles/handle_static_lyb.c \
 		\
 		$(SRC_DIR)/ft_nm/handles/handle_64.c \
 		$(SRC_DIR)/ft_nm/handles/typechar_64.c \
@@ -54,14 +55,17 @@ SRC =	$(SRC_DIR)/ft_nm/main.c \
 		\
 		$(SRC_DIR)/utils/print.c \
 		$(SRC_DIR)/utils/swap_magic.c \
+		$(SRC_DIR)/utils/swap_magic_fat.c \
 		$(SRC_DIR)/utils/get_arch_type.c \
-		$(SRC_DIR)/utils/swap_bits.c \
+		$(SRC_DIR)/utils/swap_bits_uint.c \
+		$(SRC_DIR)/utils/swap_bits_int.c \
 		$(SRC_DIR)/utils/checkoff.c \
 		$(SRC_DIR)/utils/lstsort.c \
 		$(SRC_DIR)/utils/utils_open.c \
 		$(SRC_DIR)/utils/errors.c \
 		$(SRC_DIR)/utils/utils_print.c \
 		$(SRC_DIR)/utils/getoptions.c \
+		$(SRC_DIR)/utils/is_swap.c \
 
 ###########################################
 ##--- Use Patsubst to find .o from .c ---##
