@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 12:13:28 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/13 12:30:08 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/13 14:25:55 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ static int handle_lib_objects(t_obj *obj, void *offset)
 			return (1);
 		// if ((ret = exec_handler(handler_funcs, tmp)) == 2)
 		// 	return (errors_fd(obj->path, PROGRAM, ERR_INVALID, 1));
-		if (!tmp->data || nm(tmp))
+		if (!tmp->data)
+			return (Err);
+		if (nm(tmp))
 			return (Err);
 		if (offset + tmp->size_data + sizeof(struct ar_hdr) == (obj->data + obj->size_data))
 			break;
@@ -92,16 +94,14 @@ int parse_lib(t_obj *obj)
 	return (handle_lib_objects(obj, offset));
 }
 
-
-int				handle_static_lyb(t_obj *obj)
+int handle_static_lyb(t_obj *obj)
 {
-	void			*copy_add;
+	void *copy_add;
 
-	if (!(copy_add = check_sizeoff_move(obj, obj->data, SARMAG +
-														sizeof(struct ar_hdr))))
-		return(errors_fd(obj->path, PROGRAM, 1, Err));
+	if (!(copy_add = check_sizeoff_move(obj, obj->data, SARMAG + sizeof(struct ar_hdr))))
+		return (errors_fd(obj->path, PROGRAM, 1, Err));
 	if (!check_sizeoff(obj, copy_add, AR_LONG_NAME))
-		return(errors_fd(obj->path, PROGRAM, 1, Err));
+		return (errors_fd(obj->path, PROGRAM, 1, Err));
 	if (!ft_strncmp(SYMDEF, copy_add, AR_LONG_NAME) ||
 		!ft_strncmp(SYMDEF_SORTED, copy_add, AR_LONG_NAME) ||
 		!ft_strncmp(SYMDEF_64, copy_add, AR_LONG_NAME) ||
