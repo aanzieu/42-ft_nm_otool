@@ -6,11 +6,11 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 11:23:39 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/12 15:58:31 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/13 16:03:40 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/ft_nm.h"
+#include "../../include/ft_nm.h"
 
 static void		get_flag_options(char flags, t_option *option)
 {
@@ -59,12 +59,12 @@ static void		init_option(t_option *option)
 	option->print_arch = False;
 }
 
-int				parse_options_flags(int ac, const char **av, t_option *option)
+int				parse_options_flags(int ac, const char **av, t_option *option, char *flags)
 {
 	int opt;
-
+	
 	init_option(option);
-	while ((opt = get_options(ac, av, "agAnpruUmj", option)) != -1)
+	while ((opt = get_options(ac, av, flags, option)) != -1)
 	{
 		get_flag_options(opt, option);
 		if (opt == 'a')

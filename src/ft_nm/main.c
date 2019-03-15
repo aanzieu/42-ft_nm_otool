@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 13:16:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/13 12:40:00 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/13 16:05:45 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int					main(int ac, const char **av)
 	t_obj		obj;
 	t_option	opt;
 
-	if (parse_options_flags(ac, av, &opt))
+	if (parse_options_flags(ac, av, &opt, "agAnpruUmj"))
 		return (help_nm());
 	obj.flags = &opt;
 	if (ac > obj.flags->opt_ind + 1)

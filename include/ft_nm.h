@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:32:18 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/13 10:55:06 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/13 15:55:44 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,7 @@ typedef struct			s_seg_list
 	int16_t				n_desc;
 }						t_seg_list;
 
-/*
-** Utils Open function
-*/
 
-int						get_file_statut(int const fd, struct stat *buf);
-int						open_file(char const *arg);
-int						map_file_memory(int const fd, size_t const size,
-						void **ptr);
-int						parse_options_flags(int ac, const char **av,
-						t_option *option);
 
 /*
 ** NM function

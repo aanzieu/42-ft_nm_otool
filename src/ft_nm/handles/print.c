@@ -6,11 +6,11 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:14:42 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/13 10:26:43 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/13 14:58:40 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/ft_nm.h"
+#include "../../../include/ft_nm.h"
 
 static void	print_ext(t_seg_list seg)
 {

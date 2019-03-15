@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 08:58:27 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/13 11:25:05 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/15 13:41:13 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,9 @@ void						swap_symtab_command(struct symtab_command *sym);
 void						swap_load_commands(struct load_command *lc);
 void						swap_fat_arch_64(struct fat_arch_64 *fh);
 void						swap_fat_arch(struct fat_arch *fh);
+void						swap_section(struct section *s, uint32_t nsects);
+void						swap_section_64(struct section_64 *s, uint32_t nsects);
+
 
 /*
 ** Errors
@@ -232,6 +235,17 @@ void						*check_sizeoff_move(t_obj *obj,
 		const void *start, size_t size);
 t_bool						checkoff_endofstring(t_obj *obj, char *str);
 
+
+/*
+** Utils Open function
+*/
+
+int						get_file_statut(int const fd, struct stat *buf);
+int						open_file(char const *arg);
+int						map_file_memory(int const fd, size_t const size,
+						void **ptr);
+int							parse_options_flags(int ac, const char **av,
+							t_option *option, char *flags);
 /*
 ** check cputype
 */
