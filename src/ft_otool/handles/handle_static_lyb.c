@@ -6,11 +6,11 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 12:13:28 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/18 17:00:29 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/18 18:09:41 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/ft_nm.h"
+#include "../../../include/ft_otool.h"
 #include <mach-o/ranlib.h>
 
 static void				*start_string(t_obj *obj, void *start)
@@ -65,7 +65,7 @@ static int				handle_lib_objects(t_obj *obj, void *offset)
 			return (1);
 		if (!tmp->data)
 			return (Err);
-		if (nm(tmp))
+		if (otool(tmp))
 			return (Err);
 		if (offset + tmp->size_data +
 				sizeof(struct ar_hdr) == (obj->data + obj->size_data))

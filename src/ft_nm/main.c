@@ -6,17 +6,11 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 13:16:11 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/13 16:05:45 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/18 17:35:19 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/ft_nm.h"
-
-static int			help_nm(void)
-{
-	ft_putstr_fd("\nUSAGE: /bin/ft_nm -[jUurpA] <input files>\n", 1);
-	return (1);
-}
 
 static int			parse_data_nm(t_obj *obj, int print)
 {

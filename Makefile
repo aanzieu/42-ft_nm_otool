@@ -6,7 +6,7 @@
 #    By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 11:15:53 by aanzieu           #+#    #+#              #
-#    Updated: 2019/03/15 14:25:21 by aanzieu          ###   ########.fr        #
+#    Updated: 2019/03/18 17:48:26 by aanzieu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME_OTOOL = ft_otool
 MAKE = make
 MAKE_FLAGS = --no-print-directory
 
-ASAN_FLAGS = -fsanitize=address -fno-omit-frame-pointer -Wno-format-security -g
+# ASAN_FLAGS = -fsanitize=address -fno-omit-frame-pointer -Wno-format-security -g
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -27,6 +27,7 @@ INCLUDE = -I include/ -I libft
 
 CC = gcc -g
 CC_FLAGS = -Wall -Werror -Wextra 
+# $(ASAN_FLAGS)
 
 RM = rm -f
 RF = rm -rf
@@ -61,7 +62,14 @@ SRC_NAME_NM =	$(SRC_PATH_NM)/main.c \
 SRC_NAME_OTOOL =	$(SRC_PATH_OTOOL)/main.c \
 		$(SRC_PATH_OTOOL)/handles/ft_otool.c \
 		$(SRC_PATH_OTOOL)/handles/handle_32.c \
-		$(SRC_PATH_OTOOL)/handles/print_hexdump.c \
+		$(SRC_PATH_OTOOL)/handles/handle_64.c \
+		$(SRC_PATH_OTOOL)/handles/print_path_cpu.c \
+		$(SRC_PATH_OTOOL)/handles/handle_static_lyb.c \
+		$(SRC_PATH_OTOOL)/handles/parse_arch32.c \
+		$(SRC_PATH_OTOOL)/handles/parse_arch64.c \
+		$(SRC_PATH_OTOOL)/handles/handle_fat.c \
+		$(SRC_PATH_OTOOL)/handles/print_hexdump32.c \
+		$(SRC_PATH_OTOOL)/handles/print_hexdump64.c \
 
 		
 
@@ -101,7 +109,7 @@ $(NAME_NM): $(OBJ_NM) $(OBJ_MISC)
 	printf '\033[K\033[32m[✔] %s\n\033[0m' "--Compiling FT_NM--------"
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	$(CC) $(CC_FLAGS) $(ASAN_FLAGS) -o bin/$(NAME_NM) $(OBJ_NM) $(OBJ_MISC) $(LIBFT)
+	$(CC) $(CC_FLAGS) -o bin/$(NAME_NM) $(OBJ_NM) $(OBJ_MISC) $(LIBFT)
 	printf '\033[1;7m'
 	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
 
@@ -109,7 +117,7 @@ $(NAME_OTOOL): $(OBJ_OTOOL) $(OBJ_MISC)
 	printf '\033[K\033[32m[✔] %s\n\033[0m' "--Compiling FT_OTOOL--------"
 	@$(MAKE) $(MAKE_FLAGS) -C $(LIBFT_DIR)
 	if [ ! -d bin ]; then mkdir -p bin; fi
-	$(CC) $(CC_FLAGS) $(ASAN_FLAGS) -o bin/$(NAME_OTOOL) $(OBJ_OTOOL) $(OBJ_MISC) $(LIBFT)
+	$(CC) $(CC_FLAGS) -o bin/$(NAME_OTOOL) $(OBJ_OTOOL) $(OBJ_MISC) $(LIBFT)
 	printf '\033[1;7m'
 	printf '\033[33m[✔] %s\n\033[0m' "--DONE--------"
 
@@ -120,7 +128,7 @@ $(NAME_OTOOL): $(OBJ_OTOOL) $(OBJ_MISC)
 obj/%.o: src/%.c
 	if [ ! -d obj ]; then mkdir -p obj; fi
 	if [ ! -d $(dir $@) ]; then mkdir -p $(dir $@); fi
-	$(CC) $(CC_FLAGS) $(ASAN_FLAGS) -c $(INCLUDE) $< -o $@
+	$(CC) $(CC_FLAGS) -c $(INCLUDE) $< -o $@
 	printf '\033[K\033[0m[✔] %s\n\033[0m\033[1A' "$<"
 
 ##############################

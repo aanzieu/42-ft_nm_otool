@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 08:58:27 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/15 13:41:13 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/18 18:04:46 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ typedef struct				s_option
 	t_bool					m;
 	t_bool					j;
 	t_bool					print_arch;
+	t_bool					print_lib;
 }							t_option;
 
 typedef struct				s_obj
@@ -251,6 +252,7 @@ int							parse_options_flags(int ac, const char **av,
 */
 
 void						print_cpu_type(t_obj *input);
+void print_stat_lyb(t_obj *obj, void *offset);
 t_arch_flag					get_arch_type(cpu_type_t cputype,
 		cpu_subtype_t cpusubtype);
 

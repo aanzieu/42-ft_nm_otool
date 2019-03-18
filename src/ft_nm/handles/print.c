@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:14:42 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/13 14:58:40 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/18 17:35:40 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ static void	print_ext(t_seg_list seg)
 		ft_putstr("non-external (was a private external) ");
 	else
 		ft_putstr("non-external ");
+}
+
+int			help_nm(void)
+{
+	ft_putstr_fd("\nUSAGE: /bin/ft_nm -[jUurpA] <input files>\n", 1);
+	return (1);
 }
 
 void		print_name_section(t_seg_list seg)

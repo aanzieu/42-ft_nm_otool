@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/07 11:23:39 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/13 16:03:40 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/18 18:05:14 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,14 @@ static void		init_option(t_option *option)
 	option->m = False;
 	option->j = False;
 	option->print_arch = False;
+	option->print_lib = False;
 }
 
-int				parse_options_flags(int ac, const char **av, t_option *option, char *flags)
+int				parse_options_flags(int ac, const char **av,
+				t_option *option, char *flags)
 {
 	int opt;
-	
+
 	init_option(option);
 	while ((opt = get_options(ac, av, flags, option)) != -1)
 	{
