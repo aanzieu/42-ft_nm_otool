@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/10 12:13:28 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/18 17:00:29 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/19 13:15:06 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static t_obj			*new_tmp(size_t length, void *offset, t_obj *obj)
 					ft_atoi(offset + sizeof(ARFMAG))))
 			|| !checkoff_string(obj, offset + sizeof(struct ar_hdr), 0))
 		return (errors_fd_null(obj->path, PROGRAM, 1));
+	ft_putchar_fd('\n', 1);
 	print_stat_lyb(obj, offset);
 	return (tmp);
 }
