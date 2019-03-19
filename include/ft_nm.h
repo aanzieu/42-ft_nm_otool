@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 14:32:18 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/18 17:35:07 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/19 08:39:39 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,12 @@ typedef struct			s_seg_list
 	int16_t				n_desc;
 }						t_seg_list;
 
-
-
 /*
 ** NM function
 */
 
 int						nm(t_obj *obj);
 int						help_nm(void);
-
 
 /*
 ** handle

@@ -6,18 +6,18 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 17:53:26 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/18 18:46:10 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/18 18:53:19 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/ft_otool.h"
 #include <limits.h>
 
-static void *get_loadcommand32(t_obj *obj)
+static void			*get_loadcommand32(t_obj *obj)
 {
-	uint32_t index;
-	struct load_command *lc;
-	char cmp[16];
+	uint32_t				index;
+	struct load_command		*lc;
+	char					cmp[16];
 
 	lc = obj->lc;
 	ft_memset(cmp, 0, 16);
@@ -28,17 +28,18 @@ static void *get_loadcommand32(t_obj *obj)
 		{
 			if (!check_sizeoff(obj, lc, sizeof(struct segment_command)))
 				return (errors_fd_null(MALFORMED, ERR_LC, 1));
-			if (!ft_strncmp(((struct segment_command *)lc)->segname, SEG_TEXT, 16) ||
-					!ft_memcmp(((struct segment_command *)lc)->segname, cmp, 16))
+			if (!ft_strncmp(((struct segment_command *)lc)->segname,
+						SEG_TEXT, 16) ||
+				!ft_memcmp(((struct segment_command *)lc)->segname, cmp, 16))
 				return (lc);
 		}
 		if (!(lc = check_sizeoff_move(obj, lc, ifswap32(obj, lc->cmdsize))))
-			break;
+			break ;
 	}
 	return (errors_fd_null(MALFORMED, ERR_LC, 1));
 }
 
-static void *get_section32(t_obj *obj, void *offset, uint32_t nb)
+static void			*get_section32(t_obj *obj, void *offset, uint32_t nb)
 {
 	uint32_t index;
 
@@ -52,12 +53,12 @@ static void *get_section32(t_obj *obj, void *offset, uint32_t nb)
 		if (!ft_strncmp(((struct section *)offset)->sectname, SECT_TEXT, 16))
 			return (offset);
 		if (!(offset = check_sizeoff_move(obj, offset, sizeof(struct section))))
-			break;
+			break ;
 	}
 	return (errors_fd_null(MALFORMED, ERR_SECT, 1));
 }
 
-static void    *get_text32(t_obj *obj, struct section *sect)
+static void			*get_text32(t_obj *obj, struct section *sect)
 {
 	void *offset;
 
@@ -77,39 +78,30 @@ static void    *get_text32(t_obj *obj, struct section *sect)
 	return (offset);
 }
 
-
-static int checksection_32(t_obj *obj)
+static int			checksection_32(t_obj *obj)
 {
-
-	struct section sect;
-	void *start;
+	struct section		sect;
+	void				*start;
 
 	if (!(start = get_text32(obj, &sect)))
-	{
 		return (Err);
-	}
 	if (!(check_sizeoff(obj, start, sect.size)))
-	{
 		return (errors_fd(MALFORMED, ERR_SECT, 1, Err));
-	}
 	if (!obj->flags->print_arch)
-	{
 		print_cpu_type(obj);
-	}
-	else if (!obj->flags->print_lib) {
-	}
+	else if (!obj->flags->print_lib)
+		;
 	else
 	{
 		ft_putstr_fd(obj->path, 1);
 		ft_putstr_fd(":\n", 1);
 	}
-	return print_hex_32(obj, start, sect);
+	return (print_hex_32(obj, start, sect));
 }
 
-int handle_32(t_obj *obj)
+int					handle_32(t_obj *obj)
 {
 	struct mach_header *header;
-
 
 	if (!check_sizeoff(obj, obj->data, sizeof(struct mach_header)))
 		return (errors_fd(MALFORMED, ERR_MH, 1, Err));

@@ -6,7 +6,7 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 08:58:27 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/18 18:04:46 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/19 08:39:22 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,9 @@
 
 # include <fcntl.h>
 # include <ar.h>
-# include <unistd.h>
 # include <mach-o/fat.h>
 # include <mach-o/loader.h>
 # include <mach-o/nlist.h>
-# include <stdio.h>
-# include <stdlib.h>
 # include <sys/mman.h>
 # include <sys/stat.h>
 # include "../libft/libft.h"
@@ -212,8 +209,8 @@ void						swap_load_commands(struct load_command *lc);
 void						swap_fat_arch_64(struct fat_arch_64 *fh);
 void						swap_fat_arch(struct fat_arch *fh);
 void						swap_section(struct section *s, uint32_t nsects);
-void						swap_section_64(struct section_64 *s, uint32_t nsects);
-
+void						swap_section_64(struct section_64 *s,
+							uint32_t nsects);
 
 /*
 ** Errors
@@ -229,35 +226,35 @@ void						*errors_fd_null(const char *str,
 */
 
 char						*checkoff_string(t_obj *obj,
-		char *str, uint32_t off);
+							char *str, uint32_t off);
 void						*check_sizeoff(t_obj *obj,
-		const void *start, size_t size);
+							const void *start, size_t size);
 void						*check_sizeoff_move(t_obj *obj,
-		const void *start, size_t size);
+							const void *start, size_t size);
 t_bool						checkoff_endofstring(t_obj *obj, char *str);
-
 
 /*
 ** Utils Open function
 */
 
-int						get_file_statut(int const fd, struct stat *buf);
-int						open_file(char const *arg);
-int						map_file_memory(int const fd, size_t const size,
-						void **ptr);
+int							get_file_statut(int const fd, struct stat *buf);
+int							open_file(char const *arg);
+int							map_file_memory(int const fd, size_t const size,
+							void **ptr);
 int							parse_options_flags(int ac, const char **av,
 							t_option *option, char *flags);
+
 /*
 ** check cputype
 */
 
 void						print_cpu_type(t_obj *input);
-void print_stat_lyb(t_obj *obj, void *offset);
+void						print_stat_lyb(t_obj *obj, void *offset);
 t_arch_flag					get_arch_type(cpu_type_t cputype,
-		cpu_subtype_t cpusubtype);
+							cpu_subtype_t cpusubtype);
 
 char						ntype_if_upper(char c, uint8_t ntype);
 int							get_options(int argc, char const *argv[],
-		const char *optstring, t_option *opt);
+							const char *optstring, t_option *opt);
 
 #endif

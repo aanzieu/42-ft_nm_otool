@@ -6,13 +6,13 @@
 /*   By: aanzieu <aanzieu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 11:47:42 by aanzieu           #+#    #+#             */
-/*   Updated: 2019/03/18 17:36:44 by aanzieu          ###   ########.fr       */
+/*   Updated: 2019/03/18 19:01:07 by aanzieu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/ft_otool.h"
 
-void print_cpu_type(t_obj *obj)
+void	print_cpu_type(t_obj *obj)
 {
 	const char *name;
 
@@ -33,9 +33,8 @@ void print_cpu_type(t_obj *obj)
 	}
 }
 
-int help_otool(void)
+int		help_otool(void)
 {
-    ft_putstr_fd("\nUSAGE: /bin/ft_otool -[ht] <input files>\n", 1);
-    return (1);
+	ft_putstr_fd("\nUSAGE: /bin/ft_otool -[ht] <input files>\n", 1);
+	return (1);
 }
-
